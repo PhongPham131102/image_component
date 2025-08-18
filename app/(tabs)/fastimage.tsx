@@ -34,6 +34,7 @@ export default function FastImageScreen() {
       await Image.prefetch(imagesToPreload);
       alert("Images preloaded successfully!");
     } catch (error) {
+      console.error("Failed to preload images:", error);
       alert("Failed to preload images");
     }
   };
@@ -44,7 +45,7 @@ export default function FastImageScreen() {
         <View style={styles.header}>
           <Text style={styles.title}>Fast Image Loading Demo</Text>
           <Text style={styles.subtitle}>
-            Sử dụng Expo Image với tối ưu performance
+            Sử dụng Expo Image với tối ưu performance (tương thích Fast Image API)
           </Text>
         </View>
 
