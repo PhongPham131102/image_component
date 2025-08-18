@@ -1,75 +1,193 @@
-import { Image } from 'expo-image';
-import { Platform, StyleSheet } from 'react-native';
+import { Image } from "expo-image";
+import React from "react";
+import {
+  ImageBackground,
+  SafeAreaView,
+  ScrollView,
+  StyleSheet,
+  Text,
+  View,
+} from "react-native";
 
-import { HelloWave } from '@/components/HelloWave';
-import ParallaxScrollView from '@/components/ParallaxScrollView';
-import { ThemedText } from '@/components/ThemedText';
-import { ThemedView } from '@/components/ThemedView';
-
-export default function HomeScreen() {
+export default function FullScreenBackgroundScreen() {
   return (
-    <ParallaxScrollView
-      headerBackgroundColor={{ light: '#A1CEDC', dark: '#1D3D47' }}
-      headerImage={
-        <Image
-          source={require('@/assets/images/partial-react-logo.png')}
-          style={styles.reactLogo}
-        />
-      }>
-      <ThemedView style={styles.titleContainer}>
-        <ThemedText type="title">Welcome!</ThemedText>
-        <HelloWave />
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 1: Try it</ThemedText>
-        <ThemedText>
-          Edit <ThemedText type="defaultSemiBold">app/(tabs)/index.tsx</ThemedText> to see changes.
-          Press{' '}
-          <ThemedText type="defaultSemiBold">
-            {Platform.select({
-              ios: 'cmd + d',
-              android: 'cmd + m',
-              web: 'F12',
-            })}
-          </ThemedText>{' '}
-          to open developer tools.
-        </ThemedText>
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 2: Explore</ThemedText>
-        <ThemedText>
-          {`Tap the Explore tab to learn more about what's included in this starter app.`}
-        </ThemedText>
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 3: Get a fresh start</ThemedText>
-        <ThemedText>
-          {`When you're ready, run `}
-          <ThemedText type="defaultSemiBold">npm run reset-project</ThemedText> to get a fresh{' '}
-          <ThemedText type="defaultSemiBold">app</ThemedText> directory. This will move the current{' '}
-          <ThemedText type="defaultSemiBold">app</ThemedText> to{' '}
-          <ThemedText type="defaultSemiBold">app-example</ThemedText>.
-        </ThemedText>
-      </ThemedView>
-    </ParallaxScrollView>
+    <SafeAreaView style={styles.container}>
+      <ScrollView>
+        {/* Full Screen Background Image Example */}
+        <ImageBackground
+          style={styles.fullScreenBackground}
+          source={{
+            uri: "https://raw.githubusercontent.com/AboutReact/sampleresource/master/crystal_background.jpg",
+          }}
+        >
+          <View style={styles.overlay}>
+            <Text style={styles.titleStyle}>
+              React Native Full Screen Background Image
+            </Text>
+            <View style={styles.centerContentStyle}>
+              <Image
+                source={{
+                  uri: "https://raw.githubusercontent.com/AboutReact/sampleresource/master/logosmalltransparen.png",
+                }}
+                style={styles.logoStyle}
+              />
+              <Text style={styles.textStyle}>AboutReact Demo</Text>
+            </View>
+          </View>
+        </ImageBackground>
+
+        {/* Local Image Background Example */}
+        <View style={styles.sectionContainer}>
+          <Text style={styles.sectionTitle}>Local Image Background</Text>
+          <ImageBackground
+            style={styles.localBackground}
+            source={require("@/assets/images/react-logo.png")}
+            resizeMode="cover"
+          >
+            <View style={styles.localOverlay}>
+              <Text style={styles.localText}>Local Asset Background</Text>
+            </View>
+          </ImageBackground>
+        </View>
+
+        {/* Network Image with Headers */}
+        <View style={styles.sectionContainer}>
+          <Text style={styles.sectionTitle}>Network Image với Headers</Text>
+          <ImageBackground
+            style={styles.networkBackground}
+            source={{
+              uri: "https://picsum.photos/400/300",
+              headers: { Authorization: "Bearer token123" },
+            }}
+          >
+            <View style={styles.networkOverlay}>
+              <Text style={styles.networkText}>Network Image with Auth</Text>
+            </View>
+          </ImageBackground>
+        </View>
+
+        {/* Multiple Background Styles */}
+        <View style={styles.sectionContainer}>
+          <Text style={styles.sectionTitle}>Gradient Overlay Effect</Text>
+          <ImageBackground
+            style={styles.gradientBackground}
+            source={{
+              uri: "https://picsum.photos/400/250",
+            }}
+          >
+            <View style={styles.gradientOverlay}>
+              <Text style={styles.gradientText}>Gradient Overlay</Text>
+              <Text style={styles.gradientSubtext}>
+                Beautiful background effect
+              </Text>
+            </View>
+          </ImageBackground>
+        </View>
+      </ScrollView>
+    </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
-  titleContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: 8,
+  container: {
+    flex: 1,
+    backgroundColor: "#fff",
   },
-  stepContainer: {
-    gap: 8,
-    marginBottom: 8,
+  fullScreenBackground: {
+    height: 400,
+    justifyContent: "center",
+    alignItems: "center",
   },
-  reactLogo: {
-    height: 178,
-    width: 290,
-    bottom: 0,
-    left: 0,
-    position: 'absolute',
+  overlay: {
+    flex: 1,
+    backgroundColor: "rgba(0,0,0,0.3)",
+    justifyContent: "center",
+    alignItems: "center",
+    padding: 20,
+    width: "100%",
+  },
+  titleStyle: {
+    fontSize: 24,
+    fontWeight: "bold",
+    textAlign: "center",
+    color: "white",
+    marginBottom: 20,
+  },
+  centerContentStyle: {
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  logoStyle: {
+    width: 60,
+    height: 60,
+    marginBottom: 10,
+  },
+  textStyle: {
+    color: "white",
+    fontSize: 18,
+    fontWeight: "600",
+  },
+  sectionContainer: {
+    padding: 20,
+  },
+  sectionTitle: {
+    fontSize: 20,
+    fontWeight: "bold",
+    marginBottom: 15,
+    color: "#333",
+  },
+  localBackground: {
+    height: 200,
+    justifyContent: "center",
+    alignItems: "center",
+    borderRadius: 10,
+    overflow: "hidden",
+  },
+  localOverlay: {
+    backgroundColor: "rgba(0,0,0,0.4)",
+    padding: 20,
+    borderRadius: 10,
+  },
+  localText: {
+    color: "white",
+    fontSize: 18,
+    fontWeight: "bold",
+  },
+  networkBackground: {
+    height: 180,
+    justifyContent: "center",
+    alignItems: "center",
+    borderRadius: 15,
+    overflow: "hidden",
+  },
+  networkOverlay: {
+    backgroundColor: "rgba(255,255,255,0.8)",
+    padding: 15,
+    borderRadius: 10,
+  },
+  networkText: {
+    color: "#333",
+    fontSize: 16,
+    fontWeight: "bold",
+  },
+  gradientBackground: {
+    height: 160,
+    justifyContent: "flex-end",
+    borderRadius: 20,
+    overflow: "hidden",
+  },
+  gradientOverlay: {
+    backgroundColor: "rgba(0,0,0,0.6)",
+    padding: 20,
+  },
+  gradientText: {
+    color: "white",
+    fontSize: 18,
+    fontWeight: "bold",
+  },
+  gradientSubtext: {
+    color: "white",
+    fontSize: 14,
+    marginTop: 5,
   },
 });
