@@ -6,7 +6,6 @@ import {
   ScrollView,
   StyleSheet,
   Text,
-  TouchableOpacity,
   View,
 } from "react-native";
 
@@ -44,22 +43,20 @@ export default function FastImageScreen() {
       <ScrollView>
         <View style={styles.header}>
           <Text style={styles.title}>Fast Image Loading Demo</Text>
-          <Text style={styles.subtitle}>
-            Sử dụng Expo Image với tối ưu performance (tương thích Fast Image API)
-          </Text>
         </View>
-
-        {/* Preload Images Button */}
+        {/* Placeholder */}
         <View style={styles.section}>
-          <Text style={styles.sectionTitle}>Image Preloading</Text>
-          <TouchableOpacity
-            style={styles.preloadButton}
-            onPress={preloadImages}
-          >
-            <Text style={styles.preloadButtonText}>Preload Images</Text>
-          </TouchableOpacity>
+          <Text style={styles.sectionTitle}>Placeholder Image</Text>
+          <View style={styles.imageContainer}>
+            <Image
+              style={styles.image}
+              source={{ uri: "https://picsum.photos/3000/3000" }}
+              placeholder={require("@/assets/images/react-logo.png")}
+              contentFit="cover"
+              transition={500}
+            />
+          </View>
         </View>
-
         {/* Simple Fast Image */}
         <View style={styles.section}>
           <Text style={styles.sectionTitle}>1. Basic Fast Image</Text>
@@ -233,20 +230,7 @@ export default function FastImageScreen() {
           </Text>
         </View>
 
-        {/* Placeholder */}
-        <View style={styles.section}>
-          <Text style={styles.sectionTitle}>8. Placeholder Image</Text>
-          <View style={styles.imageContainer}>
-            <Image
-              style={styles.image}
-              source={{ uri: "https://picsum.photos/400/400?random=10" }}
-              placeholder={require("@/assets/images/react-logo.png")}
-              contentFit="cover"
-              transition={500}
-            />
-          </View>
-          <Text style={styles.description}>Shows React logo while loading</Text>
-        </View>
+        <View style={styles.section}></View>
       </ScrollView>
     </SafeAreaView>
   );
