@@ -199,13 +199,6 @@ export default function SliderImageGalleryScreen() {
       <StatusBar barStyle="light-content" backgroundColor="#2C3E50" />
 
       <ScrollView>
-        <View style={styles.header}>
-          <Text style={styles.title}>Slider Image Gallery</Text>
-          <Text style={styles.subtitle}>
-            Swipe để xem gallery ảnh tuyệt đẹp
-          </Text>
-        </View>
-
         {/* Main Image Slider */}
         <View style={styles.section}>
           <Text style={styles.sectionTitle}>1. Main Image Slider</Text>
@@ -323,24 +316,7 @@ export default function SliderImageGalleryScreen() {
         </View>
 
         {/* Instructions */}
-        <View style={styles.section}>
-          <Text style={styles.sectionTitle}>Features</Text>
-          <Text style={styles.instruction}>
-            • Touch images to view fullscreen
-          </Text>
-          <Text style={styles.instruction}>
-            • Swipe horizontally to navigate
-          </Text>
-          <Text style={styles.instruction}>
-            • Tap pagination dots for quick navigation
-          </Text>
-          <Text style={styles.instruction}>
-            • Thumbnail preview for easy selection
-          </Text>
-          <Text style={styles.instruction}>
-            • Multiple slider styles and layouts
-          </Text>
-        </View>
+        <View style={styles.section}></View>
       </ScrollView>
 
       {/* Full Screen Modal */}
